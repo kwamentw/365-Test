@@ -1,4 +1,21 @@
-## Foundry
+# 365-Test
+This is a simple challenge i put to myself. Everyday in 2024 i have to contribute to this Repository, I want all greens, haha.
+
+### How am i going about this?
+* I am made chatgpt generate an outline for me through out this whole year.
+
+### Can i do what Chatgpt outlined?
+* I will try my best follow it to the latter and modify just a few.
+
+### what is the goal of this project?
+* I do not feel too confident in my foundry testing skills, so i just want to boost my ego in that aspect, haha.
+* I am trying to find bugs too, soo hopefully this will open my eyes to more bugs, might not be possible too lets see.
+
+
+
+
+
+## I am using Foundry, and this is normal foundry stuff to help you understand the framework & set it up.
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
@@ -64,3 +81,4 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
