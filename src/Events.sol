@@ -2,34 +2,19 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract VotingEvent{
+contract DonationEvent{
     // this is a contract that teaches me how to test events
     // Might be updated later for advanced techniques
 
     //Anyway this was the idea of ChatGPT
 
-    enum Candidate{Aguan, Toska, Jamalord}
-    event Vote (address indexed Voter, Candidate candidate, uint256 counter);
-    uint256 TotalnoVotes;
-    address voter;
-    uint256 counter;
+    event Donate (address indexed donor, uint256 indexed amount, uint256 id);
+    
+    function Donation(address _donor, uint256 amount, uint256 _id) external {
+        // donation done
+        _donor = msg.sender;
 
-    constructor(){
-      counter = 0;
-    }
-
-    function voting( Candidate _candidate) public {
-        // checks so that no one votes twice
-        require(voter!=msg.sender,"You cannot vote twice");
-        // Vote casted
-        emit Vote( msg.sender, _candidate, TotalnoVotes);
-        // Vote counted
-        counter++;
-
-        voter = msg.sender;
-
-        //Total number of votes stored
-        TotalnoVotes= counter;
+        emit Donate( _donor, amount, _id);
     }
 
 }
