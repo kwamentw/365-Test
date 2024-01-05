@@ -5,21 +5,19 @@ import {Test} from "forge-std/Test.sol";
 import {BasicStorage} from "../src/BasicStorage.sol";
 import {console} from "forge-std/console.sol";
 
-contract BasicStorageTest is Test{
+contract BasicStorageTest is Test {
     BasicStorage public basicstorage;
     uint256 number = 4;
 
-    function setUp() public{
+    function setUp() public {
         basicstorage = new BasicStorage();
     }
 
     function testStoreData() public {
         basicstorage.storeData(number);
-        
     }
 
-    function testRetrieve() public{
+    function testRetrieve() public {
         basicstorage.retrieveData(number);
     }
-
 }

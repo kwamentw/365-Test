@@ -3,22 +3,21 @@
 pragma solidity 0.8.20;
 
 import {Test} from "forge-std/Test.sol";
-import {VotingEvent} from "../src/Events.sol";
+import {DonationEvent} from "../src/Events.sol";
 
-contract VotingEventTest is Test {
-     VotingEvent public Event;
-    enum Candidate{Aguan, Toska, Jamalord}
-    uint256 counter;
-    event Vote (address indexed Voter, Candidate candidate, uint256 counter);
+contract DonationEventTest is Test {
+    DonationEvent Event;
 
+    event Donate(address indexed donor, uint256 indexed amount, uint256 id);
 
     function setUp() public {
-         Event = new VotingEvent();
+        Event = new DonationEvent();
     }
 
     function testEmitEvent() public {
-        vm.expectEmit(true,false,false,true);
-        emit Vote(address(1), Candidate.Toska, counter);
-        Event.voting(VotingEvent.Candidate(2));
+        vm.expectEmit(true, true, false, false);
+
+        emit Donate(address(this), 123, 1);
+        Event.Donation(address(this), 123, 1);
     }
 }
