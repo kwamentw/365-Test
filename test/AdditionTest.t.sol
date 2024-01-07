@@ -43,5 +43,9 @@ contract AdditionTest is Test{
         add.addDigits(firstVal,secondVal,thirdVal);
     }
 
+    function testRequire_OverflowErr() public {
+        
+    }
+
 
 }
