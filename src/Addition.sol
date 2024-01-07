@@ -6,7 +6,7 @@ contract BasicAddition {
 
     // result holds the result for the final computtation
     uint256 public result;
-    
+
     // This error indicates the result value is bigger than max of uint256
     error ArithmeticOverflow();
 
