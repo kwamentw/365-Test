@@ -1,0 +1,56 @@
+{
+  "transactions": [
+    {
+      "hash": "0x707972941a4f29d98f2de7743b13018f8709cb43f16f4757172b516e9d5041da",
+      "transactionType": "CREATE",
+      "contractName": "BasicStorage",
+      "contractAddress": "0x5922CBA734bfF55b1Df57D53584341Bd1628F5C7",
+      "function": null,
+      "arguments": null,
+      "transaction": {
+        "type": "0x02",
+        "from": "0x36cfbeb305a7ee5cf389a731d8c027818f962d6c",
+        "gas": "0x2365b",
+        "value": "0x0",
+        "data": "0x608060405234801561001057600080fd5b5061010d806100206000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c806316b951761460415780635bee29b714607157806373d4a13a1460b7575b600080fd5b606f604c36600460bf565b600081815560408051602081018490520160408051601f19818403019052525050565b005b60a5607c36600460bf565b600081905560408051602080820193909352815180820384018152908201909152805191012090565b60405190815260200160405180910390f35b60a560005481565b60006020828403121560d057600080fd5b503591905056fea2646970667358221220cad21944def24921adcc745ef1be9ef8db97fe5c04d05783c2d9fdae8df4e70964736f6c63430008140033",
+        "nonce": "0x9",
+        "accessList": []
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0x73f9554ee1023fde57bda72bf6a6ccfdc9b5733fe8df1f5f77891a1ec74ab2e1",
+      "transactionType": "CALL",
+      "contractName": "BasicStorage",
+      "contractAddress": "0x5922CBA734bfF55b1Df57D53584341Bd1628F5C7",
+      "function": "retrieveData(uint256)",
+      "arguments": [
+        "23"
+      ],
+      "transaction": {
+        "type": "0x02",
+        "from": "0x36cfbeb305a7ee5cf389a731d8c027818f962d6c",
+        "to": "0x5922cba734bff55b1df57d53584341bd1628f5c7",
+        "gas": "0xebca",
+        "value": "0x0",
+        "data": "0x5bee29b70000000000000000000000000000000000000000000000000000000000000017",
+        "nonce": "0xa",
+        "accessList": []
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x707972941a4f29d98f2de7743b13018f8709cb43f16f4757172b516e9d5041da",
+    "0x73f9554ee1023fde57bda72bf6a6ccfdc9b5733fe8df1f5f77891a1ec74ab2e1"
+  ],
+  "returns": {},
+  "timestamp": 1705228917,
+  "chain": 11155111,
+  "multi": false,
+  "commit": "bdfe11e"
+}
