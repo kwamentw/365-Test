@@ -22,11 +22,8 @@ contract ArrayExample {
 
     function Vote(uint256 index) public {
         //Please enter the candidates position on the ballot to vote!
-        for (uint i = 0; i < candidates.length; i++) {
-            if (index == i) {
-                voteCounter[index]++;
-            }
-        }
+        require(index < candidates.length, "invalid candidate");
+        voteCounter[index]++;
     }
 
     function AddCandidate(string memory newCandidate) external onlyOwner {
