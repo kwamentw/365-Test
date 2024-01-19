@@ -10,7 +10,7 @@ import {ModifierContract} from "../src/modifiers.sol";
  * @notice Just trying to deploy on a local chain
  */
 contract modifierDeploy is Script {
-    // fucntion to deploy contract
+    // function to deploy contract
     function run() external returns (ModifierContract) {
         vm.startBroadcast();
         ModifierContract modify = new ModifierContract();
