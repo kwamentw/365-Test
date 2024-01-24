@@ -13,6 +13,7 @@ contract TryEnum {
         addition,
         subtraction,
         multiplication,
+        idunno,
         division
     }
 
