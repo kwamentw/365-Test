@@ -2,16 +2,16 @@
 pragma solidity 0.8.20;
 
 /**
- * @title An example contract for mappingd
+ * @title An example contract of mappings
  * @author Kwame 4B
- * @notice i just want to touch mappings to understand, nothing really major.
+ * @notice i just want to touch mappings to get some understanding, nothing really major.
  */
 contract MappingConEx {
     /**
      * @notice A little back story to this contract
      * where i live there is something called a susu box
      * That is what inspired this contract
-     * It is a traditional way of saving money when you are a child or kid
+     * It is a traditional way of saving money, when you are a child or a kid
      * Evethough the Elderly still F with it
      * it is a small box or cylinder made of wood or hard brown cardboard
      * it has an opening at the top where you insert the money
