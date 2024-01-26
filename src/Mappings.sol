@@ -52,7 +52,7 @@ contract MappingConEx {
         address _owner,
         uint256 amount
     ) public {
-        _owner = msg.sender;
+        //_owner = msg.sender;
         // susubox 1.0 this only has access to the amount val
         i_SusuBox[_key] = amount;
         //susubox 2.0 this has access to address and amount
