@@ -21,7 +21,12 @@ contract EncodeTest is Test {
     /**
      * testing whether the encode uint & string works normally
      */
-    function testEncUintStr() public {
+    function testEmit_EncUintStr() public {
+        vm.expectEmit(false, false, false, false);
+        emit DataEncoded(
+            keccak256(abienc.encodeUintAndString(23, "yo-nyG")),
+            abienc.encodeUintAndString(23, "yo-nyG")
+        );
         abienc.encodeUintAndString(23, "yo-nyG");
     }
 
