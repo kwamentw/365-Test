@@ -36,7 +36,7 @@ contract Transact {
         // making sure only the owner can call this function
         require(owner == msg.sender, "you are not the owner");
         // checking for an invalid address
-        require(_to == address(0), "Invalid-address");
+        require(_to != address(0), "Invalid-address");
         // making sure the owner cannot send an invalid amount
         require(amount > 0, "You cannot send nothing");
 
