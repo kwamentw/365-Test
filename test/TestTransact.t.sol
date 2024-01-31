@@ -12,25 +12,38 @@ import {console2} from "forge-std/console2.sol";
  */
 
 contract TestTransact is Test {
+    // initialising contract
     Transact senrec;
 
     function setUp() public {
         senrec = new Transact();
     }
 
+    /**
+     * facilitate receiving of funds
+     */
     receive() external payable {}
 
+    /**
+     * This logs the current balance of the two contracts involved
+     */
     function testLogBalance() public view {
         console2.log("Your balance is: ", address(this).balance / 1e18);
         console2.log("Your contract balance is: ", senrec.getBalance() / 1e18);
     }
 
+    /**
+     * This test whether non owners can send eth | this is expected to reverted
+     */
     function testNotOwnerSendEth() public {
         hoax(payable(address(5)), 123);
         vm.expectRevert(bytes("you are not the owner"));
         senrec.SendEth(payable(address(6)), 123);
     }
 
+    /**
+     * Tests whether owner can send eth successfully
+     */
     function testOwnerSendEth() public {
         depositToContract(3);
         uint256 balbefore = address(this).balance;
@@ -38,6 +51,9 @@ contract TestTransact is Test {
         assertLt(balbefore, address(this).balance);
     }
 
+    /**
+     * Tests whether non owners can withdraw eth
+     */
     function testNotOwnerWithdrawEth() public {
         depositToContract(22);
         vm.expectRevert();
@@ -45,7 +61,32 @@ contract TestTransact is Test {
         senrec.withdraw(1);
     }
 
+    /**
+     * Test the validation of the owner calling withdraw
+     */
+    function testOwnerWithdrawEth() public {
+        depositToContract(23);
+        uint256 balbefore = senrec.getBalance();
+        uint256 thisbalbefore = address(this).balance;
+        senrec.withdraw(12);
+        assertGt(balbefore, senrec.getBalance());
+        assertEq(thisbalbefore, address(this).balance - 12);
+    }
+
+    /**
+     * Trying to see whether the contract can send money ot itself
+     */
+    function testfingAround() public {
+        depositToContract(25);
+        senrec.SendEth(payable(address(senrec)), 23);
+    }
+
+    /**
+     * To deposit funds into the contract
+     * @param amount the amount of ETH you want to deposit
+     */
     function depositToContract(uint256 amount) public {
+        hoax(address(1223), 22245);
         (bool ok, ) = address(senrec).call{value: amount}("");
         require(ok, "Txn failed!");
     }
