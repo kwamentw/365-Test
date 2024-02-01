@@ -116,10 +116,10 @@ contract TestTransact is Test {
     /**
      * testing deposit functions
      */
-    // function testDeposit() public {
-    //     depositToContract(233);
-    //     assertEq(senrec.getBalance(), 233);
-    // }
+    function testReceive() public {
+        depositToContract(233);
+        assertEq(senrec.getBalance(), 233);
+    }
 
     // function testfailDeposit() public {
     //     vm.expectRevert();
