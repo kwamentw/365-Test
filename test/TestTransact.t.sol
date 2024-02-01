@@ -52,6 +52,16 @@ contract TestTransact is Test {
     }
 
     /**
+     * A test to check whether there's a revert on insufficient balance
+     */
+    function testfailSendEth() public {
+        depositToContract(22);
+        vm.expectRevert();
+        senrec.SendEth(payable(address(454)), 34);
+        console2.log(address(454).balance);
+    }
+
+    /**
      * Tests whether non owners can withdraw eth
      */
     function testNotOwnerWithdrawEth() public {
@@ -74,7 +84,19 @@ contract TestTransact is Test {
     }
 
     /**
-     * Trying to see whether the contract can send money ot itself
+     * A test to check whether there's a revert on insufficient balance
+     */
+    function testfailWithdraw() public {
+        depositToContract(2);
+        vm.expectRevert();
+        senrec.withdraw(45);
+        console2.log(address(this).balance);
+        console2.log(senrec.getBalance());
+    }
+
+    /**
+     * Trying to see whether the contract can send money it itself using its own function
+     * turns out it was possible
      */
     function testfingAround() public {
         depositToContract(25);
@@ -90,4 +112,17 @@ contract TestTransact is Test {
         (bool ok, ) = address(senrec).call{value: amount}("");
         require(ok, "Txn failed!");
     }
+
+    /**
+     * testing deposit functions
+     */
+    // function testDeposit() public {
+    //     depositToContract(233);
+    //     assertEq(senrec.getBalance(), 233);
+    // }
+
+    // function testfailDeposit() public {
+    //     vm.expectRevert();
+    //     depositToContract(993333333333);
+    // }
 }
