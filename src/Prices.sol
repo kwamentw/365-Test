@@ -16,4 +16,8 @@ contract PriceEth {
         (, int256 answer, , , ) = pricefeed.latestRoundData();
         return answer;
     }
+
+    function getVersion() public view returns (uint) {
+        return pricefeed.version();
+    }
 }

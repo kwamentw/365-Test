@@ -15,4 +15,9 @@ contract TestPrice is Test {
         currPrice.getETHUSDCurrentPrice();
         assertGt(currPrice.getETHUSDCurrentPrice(), 0);
     }
+
+    function testPriceFeedVersion() public {
+        uint256 version = currPrice.getVersion();
+        assertGt(version, 1);
+    }
 }
