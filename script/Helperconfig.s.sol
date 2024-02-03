@@ -42,7 +42,7 @@ contract HelperConfig is Script {
     }
 
     /**
-     * This runs the contract on local chain
+     * This runs the contract on local chain but we have to create a mock contract
      */
     function getOrCreateAnvilConfig()
         public
