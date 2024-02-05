@@ -10,6 +10,8 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.4/interfaces/Ag
  * @notice trial contract
  */
 contract EthConverter {
+    uint256 private constant PRECISION = 1e18;
+
     address owner;
     uint256 currentPrice;
     uint256 result;
@@ -19,13 +21,10 @@ contract EthConverter {
         priceFeed = AggregatorV3Interface(_pricefeedaddress);
     }
 
-    // receives usd to be converted
-    receive() external payable {}
-
     /**
      * get version of current feed in use
      */
-    function getVersion() external view returns (uint256) {
+    function getVersionn() external view returns (uint256) {
         return priceFeed.version();
     }
 
@@ -39,11 +38,11 @@ contract EthConverter {
 
     /**
      * converts eth to usd
-     * @param _amount amount to convert
+     * @param _amountInWei amount to convert
      */
-    function ConvertETHToUSD(uint256 _amount) public returns (uint256) {
+    function ConvertETHToUSD(uint256 _amountInWei) public returns (uint256) {
         currentPrice = getCurrentPrice();
-        result = _amount * (currentPrice);
+        result = ((_amountInWei * PRECISION) * (currentPrice)) / PRECISION;
         return result;
     }
 
