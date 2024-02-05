@@ -38,20 +38,30 @@ contract EthConverter {
 
     /**
      * converts eth to usd
-     * @param _amountInWei amount to convert
+     * @param _amount amount to convert
      */
-    function ConvertETHToUSD(uint256 _amountInWei) public returns (uint256) {
+    function ConvertETHToUSD(uint256 _amount) public returns (uint256) {
         currentPrice = getCurrentPrice();
-        result = ((_amountInWei * PRECISION) * (currentPrice)) / PRECISION;
+        // there are extra two decimal places for coins or cents thats why usd returns 6 decimal places the real deal is 4 + 2decimals for coins
+        // i beleive you should divide by 8 to get actual value without the cents accountablity
+        // result returns 13 decimal places 6 for usd(as explained) rest are precision places
+        result = (_amount * (currentPrice * PRECISION)) / PRECISION;
         return result;
     }
 
-    // function WithDrawETh(
-    //     address payable receiver,
-    //     uint256 _amount
-    // ) external {
-    //     result = ConvertETHToUSD(_amount);
-    //     (bool ok, ) = receiver.call{value: result}("");
-    //     require(ok, "Transaction was a failure");
-    // }
+    /**
+     * A trivial function to convert usd into eth
+     * @param amountInUSD amount of USD to be converted to ETH
+     * Just playing around with these decimals
+     */
+    function ConvertUSDToEth(
+        uint256 amountInUSD
+    ) public view returns (uint256) {
+        uint256 currentUSDValue = getCurrentPrice();
+        require(
+            (amountInUSD * 1e8) > currentUSDValue,
+            "We can't do computations below the specified limits"
+        );
+        return ((amountInUSD) / (currentUSDValue / 1e8));
+    }
 }
