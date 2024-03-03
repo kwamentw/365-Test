@@ -10,16 +10,18 @@ import {VRFConsumerBaseV2} from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBa
  * @notice A contract to generate a random number using chainlink vrf
  */
 contract OracleRandomNumber is VRFConsumerBaseV2 {
-    event RequestSent(uint256 requestId, uint256 numWords);
-    event RequestFulfilled(uint256 requestId, uint256[] RandomWords);
+    event RequestSent(uint256 requestId, uint256 numWords); // emits when request is sent
+    event RequestFulfilled(uint256 requestId, uint256[] RandomWords); // emits when requests is fulfilled
 
     struct RequestStatus {
         bool fulfilled; //whether the request has been successfully fulfilled
         bool exists; //whether a requestId exists
-        uint256[] RandomWords;
+        uint256[] RandomWords; // random values depending on how many is specified in `numWords`
     }
 
+    // mapping to store requests status
     mapping(uint256 => RequestStatus) public s_requests;
+    // coordinator contract
     VRFCoordinatorV2Interface COORDINATOR;
 
     //my subscription ID
@@ -53,6 +55,9 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
     }
 
     //Assumes subscription is funded sufficiently
+    /**
+     * Submits your request to vrf coordinator contract with specified parameters
+     */
     function requestRandomWords() external returns (uint256 requestId) {
         // will revert if subscription is not set and funded
         requestId = COORDINATOR.requestRandomWords(
@@ -73,6 +78,11 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
         return requestId;
     }
 
+    /**
+     * Retrieves and stores random values
+     * @param _requestId Id of the request
+     * @param _randomwords random numbers array
+     */
     function fulfillRandomWords(
         uint256 _requestId,
         uint256[] memory _randomwords
@@ -83,6 +93,12 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
         emit RequestFulfilled(_requestId, _randomwords);
     }
 
+    /**
+     * A function to get random numbers
+     * @param _requestId id of the request
+     * @return fulfilled bollean to evaluate fulfillment
+     * @return randomwords returns random numbers
+     */
     function getRequestStatus(
         uint256 _requestId
     ) external view returns (bool fulfilled, uint256[] memory randomwords) {
