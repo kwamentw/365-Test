@@ -16,7 +16,7 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
     struct RequestStatus {
         bool fulfilled; //whether the request has been successfully fulfilled
         bool exists; //whether a requestId exists
-        uint256[] Randomwords;
+        uint256[] RandomWords;
     }
 
     mapping(uint256 => RequestStatus) public s_requests;
@@ -50,5 +50,44 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
             0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625
         );
         s_subscriptionId = susbscriptionId;
+    }
+
+    //Assumes subscription is funded sufficiently
+    function requestRandomWords() external returns (uint256 requestId) {
+        // will revert if subscription is not set and funded
+        requestId = COORDINATOR.requestRandomWords(
+            keyHash,
+            s_subscriptionId,
+            requestConfirmations,
+            callbackGasLimit,
+            numWords
+        );
+        s_requests[requestId] = RequestStatus({
+            RandomWords: new uint256[](0),
+            exists: true,
+            fulfilled: false
+        });
+        requestsIds.push(requestId);
+        lastRequestId = requestId;
+        emit RequestSent(requestId, numWords);
+        return requestId;
+    }
+
+    function fulfillRandomWords(
+        uint256 _requestId,
+        uint256[] memory _randomwords
+    ) internal override {
+        require(s_requests[_requestId].exists, "Request does not exist");
+        s_requests[_requestId].fulfilled = true;
+        s_requests[_requestId].RandomWords = _randomwords;
+        emit RequestFulfilled(_requestId, _randomwords);
+    }
+
+    function getRequestStatus(
+        uint256 _requestId
+    ) external view returns (bool fulfilled, uint256[] memory randomwords) {
+        require(s_requests[_requestId].exists, "Request does not exist");
+        RequestStatus memory request = s_requests[_requestId];
+        return (request.fulfilled, request.RandomWords);
     }
 }
