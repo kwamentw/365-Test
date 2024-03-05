@@ -94,9 +94,9 @@ contract OracleRandomNumber is VRFConsumerBaseV2 {
     }
 
     /**
-     * A function to get random numbers
+     * A function to return random numbers
      * @param _requestId id of the request
-     * @return fulfilled bollean to evaluate fulfillment
+     * @return fulfilled boolean to evaluate fulfillment
      * @return randomwords returns random numbers
      */
     function getRequestStatus(
