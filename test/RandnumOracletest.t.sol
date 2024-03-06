@@ -13,16 +13,21 @@ import {DeployOracleRandNumber} from "../script/RandNumOracleDeploy.s.sol";
  */
 
 contract TestOracleRandNum is Test {
+    // contract declaration
     OracleRandomNumber oracle;
     DeployOracleRandNumber deploy;
 
+    // consumer address
     address consumer = 0x719c307eB941fE516bc7d1A6FA69Edd2F62fb35D;
 
     function setUp() public {
+        //setting up contract for testing
         deploy = new DeployOracleRandNumber();
         oracle = deploy.run();
     }
 
+    // function to pull random number but there's an error
+    // I'm thinking testing dont work this way
     function testGetARandomNumber() public {
         vm.startPrank(consumer);
         uint256 requestId = oracle.requestRandomWords();
