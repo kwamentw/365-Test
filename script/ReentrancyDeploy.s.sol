@@ -6,7 +6,7 @@ import {ReenterProne} from "../src/ReentrancyProne.sol";
 
 /**
  * @title Deploy script for ReenterProne
- * @author Kwwame4b
+ * @author Kwame4b
  * @notice just trying to understand these things
  */
 contract DeployProne is Script {
