@@ -10,12 +10,12 @@ contract ReenterProne {
 
     function withdraw() public {
         uint256 bal = balances[msg.sender];
-        require(bal > 0, "Insufficient funds");
+        require(bal > 0);
 
-        (bool success, ) = (msg.sender).call{value: 1 ether}("");
-        require(success);
+        (bool sent, ) = msg.sender.call{value: bal}("");
+        require(sent, "Failed to send Ether");
 
-        balances[msg.sender] -= 1 ether;
+        balances[msg.sender] = 0;
     }
 
     function getBalance() public view returns (uint256) {

