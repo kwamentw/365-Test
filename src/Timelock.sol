@@ -7,21 +7,33 @@ pragma solidity 0.8.20;
  * @notice This is just for learning purposes
  */
 contract TimeLock {
-    mapping(address => uint256) balances;
-    mapping(address => uint256) locktime;
+    /////////////// MAPPINGS ////////////////////
+    mapping(address => uint256) public balances;
+    mapping(address => uint256) public locktime;
 
+    /////// ERRORS //////////////
     error Insufficient_balance();
     error WaitTimeNotSatisfied();
 
+    /**
+     * To deposit ether
+     */
     function Deposit() external payable {
         balances[msg.sender] += msg.value;
         locktime[msg.sender] = block.timestamp + 1 weeks;
     }
 
+    /**
+     * to increase lock time
+     * @param _secondsToIncrease seconds to increase by
+     */
     function IncreaseLockTIme(uint256 _secondsToIncrease) public {
         locktime[msg.sender] += _secondsToIncrease;
     }
 
+    /**
+     * To withdraw Ether with some constraints
+     */
     function withdraw() public {
         if (balances[msg.sender] < 0) {
             revert Insufficient_balance();
