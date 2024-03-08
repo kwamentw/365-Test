@@ -20,5 +20,8 @@ contract ReenterAttackTest is Test {
      * You see reentrancy play  out
      *
      * Was trying to let this work locally but i couldn't
+     *
+     * just realised if i wanted to attack locally there was no need for the attack contract
+     * i could have just written a test contract to expolit it
      */
 }
