@@ -12,6 +12,7 @@ contract FamilySubscription {
     ///////// state variables ////////////
     uint256 public targetAmount = 5 ether;
     bool SubscriptionRenewed;
+    bool ContributionReached;
     address SubscriptionManager;
 
     /**
@@ -20,13 +21,10 @@ contract FamilySubscription {
      * Every has to send equal contribution of 1 ether
      */
     function DepositSubscription() public payable {
-        if (msg.value == 1 ether) {
-            uint256 balance = address(this).balance;
-            if (balance < targetAmount) {
-                revert Insufficient_Funds();
-            }
-        } else {
-            revert Invalid_Value();
+        require(msg.value == 1 ether);
+        uint256 balance = address(this).balance;
+        if (balance == targetAmount) {
+            ContributionReached = true;
         }
     }
 
@@ -37,6 +35,7 @@ contract FamilySubscription {
         if (address(this).balance != 5 ether) {
             revert Insufficient_Funds();
         }
+        require(ContributionReached);
         (bool sent, ) = SubscriptionManager.call{value: 5 ether}("");
         require(sent, "Txn failed");
         SubscriptionRenewed = true;
