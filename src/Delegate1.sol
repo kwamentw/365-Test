@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
+/**
+ * @title A contract to demonstrate delegatecall
+ * @author Kwame4B
+ * @notice just for education purposes
+ */
 contract FirstContract {
     // storage layout must be the same if it gon work
     uint256 public num;
