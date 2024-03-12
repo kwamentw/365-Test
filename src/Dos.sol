@@ -5,6 +5,8 @@ pragma solidity 0.8.20;
  * @title A DOS contract
  * @author Kwame 4b
  * @notice this is a contract to understand DOS
+ *  i think this attack doesnt work on later versions
+ * Source: solidity by example
  */
 contract Dos {
     address public king;

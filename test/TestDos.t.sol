@@ -11,11 +11,14 @@ contract DosTest is Test {
         denial = new Dos();
     }
 
-    function testAttackDos() public payable {
-        denial.claimThrone{value: 1 ether}();
-    }
+    /**
+     * Seems that if you hit it with the assert there will be a DOS
+     */
 
-    fallback() external payable {
+    function testAttackDos() public payable {
+        vm.deal(address(this), 5 ether);
+        vm.prank(address(this));
+        denial.claimThrone{value: 3}();
         assert(false);
     }
 }
