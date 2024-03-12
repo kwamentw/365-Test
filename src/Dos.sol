@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
+/**
+ * @title A DOS contract
+ * @author Kwame 4b
+ * @notice this is a contract to understand DOS
+ */
 contract Dos {
     address public king;
     uint256 public balance;
