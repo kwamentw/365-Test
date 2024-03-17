@@ -3,7 +3,7 @@ pragma solidity 0.8.20;
 
 /**
  * @title A timelock contract to demonstrate arithmetic overflow & underflow
- * @author Kwame4B
+ * @author Solidity by example
  * @notice This is just for learning purposes
  */
 contract TimeLock {

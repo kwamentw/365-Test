@@ -3,7 +3,7 @@ pragma solidity 0.8.20;
 
 /**
  * @title Accessing Private Data
- * @author KWame4b
+ * @author Solidity by example
  * @notice A contract to demonstrate private data reading
  * lets see whether i can read what is in private data
  */
