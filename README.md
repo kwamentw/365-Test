@@ -1,5 +1,5 @@
 # 365-Test
-This is a simple challenge i put to myself. Everyday in 2024 i have to contribute to this Repository, I want all greens, haha.
+This is a simple challenge i put to myself to write smartcontracts. Everyday in 2024 i have to contribute to this Repository, I want all greens, haha.
 
 ### How am i going about this?
 * I am made chatgpt generate an outline for me through out this whole year.
