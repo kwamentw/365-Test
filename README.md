@@ -11,8 +11,10 @@ This is a simple challenge i put to myself to write smartcontracts. Everyday in 
 * I do not feel too confident in my foundry testing skills, so i just want to boost my ego in that aspect, haha.
 * I am trying to find bugs too, soo hopefully this will open my eyes to more bugs, might not be possible too lets see.
 
-
-
+### I finished this way earilier than i presumed
+* Barely half a year
+* But i stay locked in
+* And find more challenges
 
 
 ## I am using Foundry, and this is normal foundry stuff to help you understand the framework & set it up.
@@ -44,12 +46,6 @@ $ forge build
 $ forge test
 ```
 
-### Format
-
-```shell
-$ forge fmt
-```
-
 ### Gas Snapshots
 
 ```shell
@@ -65,7 +61,7 @@ $ anvil
 ### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script script/deployScriptName.s.sol:deployContractName --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
 ### Cast
